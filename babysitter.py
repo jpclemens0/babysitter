@@ -11,6 +11,8 @@ class Babysitter:
     def job_ends_at(self, end_time):
         if end_time > datetime.time(4):
             raise EndsTooLate()
+        else:
+            self.end_time = end_time
 
 class StartsTooEarly(Exception):
     pass
