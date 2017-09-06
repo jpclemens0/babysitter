@@ -9,7 +9,7 @@ class Babysitter:
             self.start_time = start_time
 
     def job_ends_at(self, end_time):
-        if end_time > datetime.time(4):
+        if end_time > datetime.time(4) and end_time < datetime.time(17):
             raise EndsTooLate()
         else:
             self.end_time = end_time
