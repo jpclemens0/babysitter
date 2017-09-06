@@ -15,6 +15,11 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_starts_at(start_time)
         self.assertEqual(self.babysitter.start_time, start_time)
 
+    def test_babysitter_sets_start_time_when_it_is_after_midnight_and_before_4AM(self):
+        start_time = datetime.time(1)
+        self.babysitter.job_starts_at(start_time)
+        self.assertEqual(self.babysitter.start_time, start_time)
+
     def test_babysitter_ends_no_later_than_4AM(self):
         self.assertRaises(EndsTooLate, self.babysitter.job_ends_at, end_time = datetime.time(5))
 
@@ -42,7 +47,6 @@ class TestBabysitter(unittest.TestCase):
         bedtime = datetime.time(18)
         self.babysitter.bedtime_is(bedtime)
         self.assertEqual(self.babysitter.bedtime, bedtime)
-
 
 
 

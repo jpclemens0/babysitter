@@ -5,7 +5,7 @@ class Babysitter:
     latest_end_allowed = datetime.time(4)
 
     def job_starts_at(self, start_time):
-        if start_time < self.earliest_start_allowed:
+        if start_time < self.earliest_start_allowed and start_time > self.latest_end_allowed:
             raise StartsTooEarly()
         else:
             self.start_time = start_time
