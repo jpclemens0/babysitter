@@ -48,6 +48,11 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.bedtime_is(bedtime)
         self.assertEqual(self.babysitter.bedtime, bedtime)
 
+    def test__is_invalid_start_time(self):
+        self.assertTrue(self.babysitter._is_invalid_start_time(datetime.time(16)))
+        self.assertTrue(self.babysitter._is_invalid_start_time(datetime.time(5)))
+        self.assertFalse(self.babysitter._is_invalid_start_time(datetime.time(17)))
+        self.assertFalse(self.babysitter._is_invalid_start_time(datetime.time(0)))
 
 
 if __name__ == '__main__':
