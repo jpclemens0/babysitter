@@ -40,6 +40,10 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_ends_at(end_time)
         self.assertEqual(self.babysitter.end_time, end_time)
 
+    def test_babysitter_end_time_must_be_after_start_time(self):
+        self.babysitter.job_starts_at(datetime.time(20))
+        self.assertRaises(EndTimeBeforeStartTime, self.babysitter.job_ends_at, datetime.time(18))
+
     def test_babysitter_sets_bedtime_for_any_time(self):
         bedtime = datetime.time(7)
         self.babysitter.bedtime_is(bedtime)
