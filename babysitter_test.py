@@ -40,23 +40,16 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_ends_at(end_time)
         self.assertEqual(self.babysitter.end_time, end_time)
 
-    def test_bedtime_must_be_between_start_time_and_end_time(self):
-        self.babysitter.job_starts_at(datetime.time(17))
-        self.babysitter.job_ends_at(datetime.time(19))
-        self.assertRaises(InvalidBedtime, self.babysitter.bedtime_is, bedtime=datetime.time(20))
-
-    def test_babysitter_sets_bedtime_when_it_is_between_start_and_end_times(self):
-        self.babysitter.job_starts_at(datetime.time(17))
-        self.babysitter.job_ends_at(datetime.time(19))
-        bedtime = datetime.time(18)
+    def test_babysitter_sets_bedtime_for_any_time(self):
+        bedtime = datetime.time(7)
         self.babysitter.bedtime_is(bedtime)
         self.assertEqual(self.babysitter.bedtime, bedtime)
 
-    def test__is_invalid_start_time(self):
-        self.assertTrue(self.babysitter._is_invalid_start_time(datetime.time(16)))
-        self.assertTrue(self.babysitter._is_invalid_start_time(datetime.time(5)))
-        self.assertFalse(self.babysitter._is_invalid_start_time(datetime.time(17)))
-        self.assertFalse(self.babysitter._is_invalid_start_time(datetime.time(0)))
+    def test__is_invalid_time(self):
+        self.assertTrue(self.babysitter._is_invalid_time(datetime.time(16)))
+        self.assertTrue(self.babysitter._is_invalid_time(datetime.time(5)))
+        self.assertFalse(self.babysitter._is_invalid_time(datetime.time(17)))
+        self.assertFalse(self.babysitter._is_invalid_time(datetime.time(0)))
 
 
 if __name__ == '__main__':

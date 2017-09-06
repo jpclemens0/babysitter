@@ -5,7 +5,7 @@ class Babysitter:
     latest_end_allowed = datetime.time(4)
 
     def job_starts_at(self, start_time):
-        if self._is_invalid_start_time(start_time):
+        if self._is_invalid_time(start_time):
             raise StartsTooEarly()
         elif self._is_start_time_after_end_time(start_time):
             raise StartTimeAfterEndTime()
@@ -19,13 +19,7 @@ class Babysitter:
             self.end_time = end_time
 
     def bedtime_is(self, bedtime):
-        if bedtime < self.start_time or bedtime > self.end_time:
-            raise InvalidBedtime()
-        else:
             self.bedtime = bedtime
-
-    def _is_invalid_start_time(self, start_time):
-        return start_time < self.earliest_start_allowed and start_time > self.latest_end_allowed
 
     def _is_start_time_after_end_time(self, start_time):
         try:
@@ -33,13 +27,13 @@ class Babysitter:
         except AttributeError:
             return False
 
+    def _is_invalid_time(self, time):
+        return time < self.earliest_start_allowed and time > self.latest_end_allowed
+
 class StartsTooEarly(Exception):
     pass
 
 class EndsTooLate(Exception):
-    pass
-
-class InvalidBedtime(Exception):
     pass
 
 class StartTimeAfterEndTime(Exception):
