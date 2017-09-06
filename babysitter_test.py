@@ -27,7 +27,7 @@ class TestBabysitter(unittest.TestCase):
     def test_babysitter_ends_no_later_than_4AM(self):
         self.assertRaises(EndsTooLate, self.babysitter.job_ends_at, end_time = datetime.time(5))
 
-    def test_babysitter_ends_no_later_than_4AM_but_accepts_17_to_midnight(self):
+    def test_babysitter_ends_no_later_than_4AM_but_accepts_5PM_to_midnight(self):
         end_time = datetime.time(17)
         self.babysitter.job_ends_at(end_time)
         self.assertEqual(self.babysitter.end_time, end_time)
