@@ -14,8 +14,17 @@ class Babysitter:
         else:
             self.end_time = end_time
 
+    def bedtime_is(self, bedtime):
+        if bedtime < self.start_time or bedtime > self.end_time:
+            raise InvalidBedtime()
+        else:
+            self.bedtime = bedtime
+
 class StartsTooEarly(Exception):
     pass
 
 class EndsTooLate(Exception):
+    pass
+
+class InvalidBedtime(Exception):
     pass
