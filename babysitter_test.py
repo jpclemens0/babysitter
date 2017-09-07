@@ -9,7 +9,7 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter = Babysitter()
 
     def test_babysitter_starts_no_earlier_than_5PM(self):
-        self.assertRaises(StartsTooEarly, self.babysitter.job_starts_at, start_time = 16)
+        self.assertRaises(StartsTooEarly, self.babysitter.job_starts_at, hour = 16)
 
     def test_babysitter_sets_start_time_when_it_is_not_earlier_than_5PM(self):
         self.babysitter.job_starts_at(17)
@@ -21,10 +21,10 @@ class TestBabysitter(unittest.TestCase):
 
     def test_babysitter_start_time_must_be_before_end_time(self):
         self.babysitter.job_ends_at(18)
-        self.assertRaises(StartTimeAfterEndTime, self.babysitter.job_starts_at, start_time = 19)
+        self.assertRaises(StartTimeAfterEndTime, self.babysitter.job_starts_at, hour = 19)
 
     def test_babysitter_ends_no_later_than_4AM(self):
-        self.assertRaises(EndsTooLate, self.babysitter.job_ends_at, end_time = 5)
+        self.assertRaises(EndsTooLate, self.babysitter.job_ends_at, hour = 5)
 
     def test_babysitter_ends_no_later_than_4AM_but_accepts_5PM_to_midnight(self):
         self.babysitter.job_ends_at(17)
