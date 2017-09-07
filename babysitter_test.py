@@ -160,6 +160,12 @@ class TestBabysitter(unittest.TestCase):
         self.assertRaises(EndTimeBeforeStartTime, self.babysitter._is_valid_end_time, 20, 29)
         self.assertTrue(self.babysitter._is_valid_end_time(20, 31))
 
+    def test_get_full_hours_between_start_time_and_bedtime_or_midnight(self):
+        self.babysitter.job_starts_at(17)
+        self.babysitter.bedtime_is(20)
+        self.babysitter.job_ends_at(2)
+        self.assertEqual(self.babysitter.get_full_hours_between_start_time_and_bedtime_or_midnight(), 3)
+
 
 if __name__ == '__main__':
     unittest.main()

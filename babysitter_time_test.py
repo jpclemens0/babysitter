@@ -37,3 +37,6 @@ class TestBabysitterTime(unittest.TestCase):
     def test_eq(self):
         self.assertTrue(BabysitterTime(2) == BabysitterTime(2))
         self.assertTrue(BabysitterTime(2, 30) == BabysitterTime(2, 30))
+
+    def test_minus(self):
+        self.assertEqual(BabysitterTime(20) - BabysitterTime(18), datetime.timedelta(hours=2))

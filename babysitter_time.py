@@ -27,3 +27,6 @@ class BabysitterTime:
 
     def __eq__(self, other):
         return self.time == other.time
+
+    def __sub__(self, other):
+        return self.time - other.time
