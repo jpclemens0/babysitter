@@ -11,3 +11,7 @@ class TestBabysitterTime(unittest.TestCase):
         self.time.set(17)
         self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date.today(), datetime.time(17)))
 
+    def test_set_time_between_midnight_and_5PM(self):
+        self.time.set(1)
+        self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days = 1), datetime.time(1)))
+
