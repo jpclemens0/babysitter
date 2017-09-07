@@ -12,38 +12,38 @@ class TestBabysitter(unittest.TestCase):
         self.assertRaises(StartsTooEarly, self.babysitter.job_starts_at, start_time = BabysitterTime(16))
 
     def test_babysitter_sets_start_time_when_it_is_not_earlier_than_5PM(self):
-        start_time = datetime.time(17)
+        start_time = BabysitterTime(17)
         self.babysitter.job_starts_at(start_time)
         self.assertEqual(self.babysitter.start_time, start_time)
 
     def test_babysitter_sets_start_time_when_it_is_after_midnight_and_before_4AM(self):
-        start_time = datetime.time(1)
+        start_time = BabysitterTime(1)
         self.babysitter.job_starts_at(start_time)
         self.assertEqual(self.babysitter.start_time, start_time)
 
     def test_babysitter_start_time_must_be_before_end_time(self):
-        self.babysitter.job_ends_at(datetime.time(18))
-        self.assertRaises(StartTimeAfterEndTime, self.babysitter.job_starts_at, start_time = datetime.time(19))
+        self.babysitter.job_ends_at(BabysitterTime(18))
+        self.assertRaises(StartTimeAfterEndTime, self.babysitter.job_starts_at, start_time = BabysitterTime(19))
 
     def test_babysitter_ends_no_later_than_4AM(self):
-        self.assertRaises(EndsTooLate, self.babysitter.job_ends_at, end_time = datetime.time(5))
+        self.assertRaises(EndsTooLate, self.babysitter.job_ends_at, end_time = BabysitterTime(5))
 
     def test_babysitter_ends_no_later_than_4AM_but_accepts_5PM_to_midnight(self):
-        end_time = datetime.time(17)
+        end_time = BabysitterTime(17)
         self.babysitter.job_ends_at(end_time)
         self.assertEqual(self.babysitter.end_time, end_time)
-        end_time = datetime.time(23)
+        end_time = BabysitterTime(23)
         self.babysitter.job_ends_at(end_time)
         self.assertEqual(self.babysitter.end_time, end_time)
 
     def test_babysitter_sets_end_time_when_it_is_not_later_than_4AM(self):
-        end_time = datetime.time(4)
+        end_time = BabysitterTime(4)
         self.babysitter.job_ends_at(end_time)
         self.assertEqual(self.babysitter.end_time, end_time)
 
     def test_babysitter_end_time_must_be_after_start_time(self):
-        self.babysitter.job_starts_at(datetime.time(20))
-        self.assertRaises(EndTimeBeforeStartTime, self.babysitter.job_ends_at, datetime.time(18))
+        self.babysitter.job_starts_at(BabysitterTime(20))
+        self.assertRaises(EndTimeBeforeStartTime, self.babysitter.job_ends_at, BabysitterTime(18))
 
     def test_babysitter_sets_bedtime_for_any_time(self):
         bedtime = datetime.time(7)
