@@ -25,7 +25,16 @@ class Babysitter:
 
     def _is_start_time_after_end_time(self, start_time):
         try:
-            return start_time > self.end_time
+            if start_time > self.earliest_start_allowed:
+                if self.end_time > self.earliest_start_allowed:
+                    return start_time > self.end_time
+                else:
+                    return False
+            else:
+                if self.end_time > self.earliest_start_allowed:
+                    return True
+                else:
+                    return start_time > self.end_time
         except AttributeError:
             return False
 
