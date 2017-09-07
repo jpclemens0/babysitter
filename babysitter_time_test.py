@@ -8,6 +8,10 @@ class TestBabysitterTime(unittest.TestCase):
         self.time = BabysitterTime(17)
         self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date.today(), datetime.time(17)))
 
+    def test_set_time_with_hour_and_minute(self):
+        self.time = BabysitterTime(17,30)
+        self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date.today(), datetime.time(17, 30)))
+
     def test_set_time_between_midnight_and_5PM(self):
         self.time = BabysitterTime(1)
         self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days = 1), datetime.time(1)))
@@ -17,12 +21,17 @@ class TestBabysitterTime(unittest.TestCase):
         self.assertTrue(BabysitterTime(17) < BabysitterTime(18))
         self.assertTrue(BabysitterTime(17) < BabysitterTime(16))
         self.assertTrue(BabysitterTime(23) < BabysitterTime(0))
+        self.assertTrue(BabysitterTime(23) < BabysitterTime(23,30))
+        self.assertTrue(BabysitterTime(23, 30) < BabysitterTime(0))
 
     def test_gt(self):
         self.assertTrue(BabysitterTime(2) > BabysitterTime(1))
         self.assertTrue(BabysitterTime(18) > BabysitterTime(17))
         self.assertTrue(BabysitterTime(16) > BabysitterTime(17))
         self.assertTrue(BabysitterTime(0) > BabysitterTime(23))
+        self.assertTrue(BabysitterTime(2, 30) > BabysitterTime(2))
+        self.assertTrue(BabysitterTime(3) > BabysitterTime(2, 30))
 
     def test_eq(self):
         self.assertTrue(BabysitterTime(2) == BabysitterTime(2))
+        self.assertTrue(BabysitterTime(2, 30) == BabysitterTime(2, 30))
