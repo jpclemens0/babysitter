@@ -6,12 +6,16 @@ class Babysitter:
     latest_end_allowed = BabysitterTime(BabysitterTime.latest_end_allowed)
 
     def job_starts_at(self, start_time):
+        if self._is_valid_start_time(start_time):
+            self.start_time = start_time
+
+    def _is_valid_start_time(self, start_time):
         if self._is_invalid_time(start_time):
             raise StartsTooEarly()
         elif self._is_start_time_after_end_time(start_time):
             raise StartTimeAfterEndTime()
         else:
-            self.start_time = start_time
+            return True
 
     def job_ends_at(self, end_time):
         if self._is_invalid_time(end_time):
