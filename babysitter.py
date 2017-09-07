@@ -40,7 +40,16 @@ class Babysitter:
 
     def _is_end_time_before_start_time(self, end_time):
         try:
-            return end_time < self.start_time
+            if end_time > self.earliest_start_allowed:
+                if self.start_time > self.earliest_start_allowed:
+                    return end_time < self.start_time
+                else:
+                    return True
+            else:
+                if self.start_time > self.earliest_start_allowed:
+                    return False
+                else:
+                    return end_time < self.start_time
         except AttributeError:
             return False
 
