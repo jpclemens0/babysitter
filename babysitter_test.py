@@ -68,15 +68,15 @@ class TestBabysitter(unittest.TestCase):
         self.assertFalse(self.babysitter._is_start_time_after_end_time(BabysitterTime(1)))
 
     def test__is_end_time_before_start_time(self):
-        self.babysitter.job_starts_at(datetime.time(20))
-        self.assertFalse(self.babysitter._is_end_time_before_start_time(datetime.time(21)))
-        self.assertFalse(self.babysitter._is_end_time_before_start_time(datetime.time(1)))
-        self.assertTrue(self.babysitter._is_end_time_before_start_time(datetime.time(18)))
+        self.babysitter.job_starts_at(BabysitterTime(20))
+        self.assertFalse(self.babysitter._is_end_time_before_start_time(BabysitterTime(21)))
+        self.assertFalse(self.babysitter._is_end_time_before_start_time(BabysitterTime(1)))
+        self.assertTrue(self.babysitter._is_end_time_before_start_time(BabysitterTime(18)))
 
-        self.babysitter.job_starts_at(datetime.time(2))
-        self.assertFalse(self.babysitter._is_end_time_before_start_time(datetime.time(3)))
-        self.assertTrue(self.babysitter._is_end_time_before_start_time(datetime.time(20)))
-        self.assertTrue(self.babysitter._is_end_time_before_start_time(datetime.time(1)))
+        self.babysitter.job_starts_at(BabysitterTime(2))
+        self.assertFalse(self.babysitter._is_end_time_before_start_time(BabysitterTime(3)))
+        self.assertTrue(self.babysitter._is_end_time_before_start_time(BabysitterTime(20)))
+        self.assertTrue(self.babysitter._is_end_time_before_start_time(BabysitterTime(1)))
 
 
 if __name__ == '__main__':
