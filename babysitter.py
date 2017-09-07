@@ -1,8 +1,9 @@
 import datetime
+from babysitter_time import *
 
 class Babysitter:
-    earliest_start_allowed = datetime.time(17)
-    latest_end_allowed = datetime.time(4)
+    earliest_start_allowed = BabysitterTime(BabysitterTime.earliest_start_allowed)
+    latest_end_allowed = BabysitterTime(BabysitterTime.latest_end_allowed)
 
     def job_starts_at(self, start_time):
         if self._is_invalid_time(start_time):
@@ -54,7 +55,7 @@ class Babysitter:
             return False
 
     def _is_invalid_time(self, time):
-        return time < self.earliest_start_allowed and time > self.latest_end_allowed
+        return time.time < self.earliest_start_allowed.time or time.time > self.latest_end_allowed.time
 
 class StartsTooEarly(Exception):
     pass

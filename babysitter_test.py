@@ -1,6 +1,7 @@
 import unittest
 import datetime
 from babysitter import *
+from babysitter_time import *
 
 class TestBabysitter(unittest.TestCase):
 
@@ -8,7 +9,7 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter = Babysitter()
 
     def test_babysitter_starts_no_earlier_than_5PM(self):
-        self.assertRaises(StartsTooEarly, self.babysitter.job_starts_at, start_time = datetime.time(16))
+        self.assertRaises(StartsTooEarly, self.babysitter.job_starts_at, start_time = BabysitterTime(16))
 
     def test_babysitter_sets_start_time_when_it_is_not_earlier_than_5PM(self):
         start_time = datetime.time(17)
@@ -50,10 +51,10 @@ class TestBabysitter(unittest.TestCase):
         self.assertEqual(self.babysitter.bedtime, bedtime)
 
     def test__is_invalid_time(self):
-        self.assertTrue(self.babysitter._is_invalid_time(datetime.time(16)))
-        self.assertTrue(self.babysitter._is_invalid_time(datetime.time(5)))
-        self.assertFalse(self.babysitter._is_invalid_time(datetime.time(17)))
-        self.assertFalse(self.babysitter._is_invalid_time(datetime.time(0)))
+        self.assertTrue(self.babysitter._is_invalid_time(BabysitterTime(16)))
+        self.assertTrue(self.babysitter._is_invalid_time(BabysitterTime(5)))
+        self.assertFalse(self.babysitter._is_invalid_time(BabysitterTime(17)))
+        self.assertFalse(self.babysitter._is_invalid_time(BabysitterTime(0)))
 
     def test__is_start_time_after_end_time(self):
         self.babysitter.job_ends_at(datetime.time(20))
