@@ -17,3 +17,9 @@ class TestBabysitterTime(unittest.TestCase):
         self.assertTrue(BabysitterTime(17) < BabysitterTime(18))
         self.assertTrue(BabysitterTime(17) < BabysitterTime(16))
         self.assertTrue(BabysitterTime(23) < BabysitterTime(0))
+
+    def test_gt(self):
+        self.assertTrue(BabysitterTime(2) > BabysitterTime(1))
+        self.assertTrue(BabysitterTime(18) > BabysitterTime(17))
+        self.assertTrue(BabysitterTime(16) > BabysitterTime(17))
+        self.assertTrue(BabysitterTime(0) > BabysitterTime(23))
