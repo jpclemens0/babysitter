@@ -12,3 +12,5 @@ class TestBabysitterTime(unittest.TestCase):
         self.time = BabysitterTime(1)
         self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days = 1), datetime.time(1)))
 
+    def test_lt(self):
+        self.assertTrue(BabysitterTime(1) < BabysitterTime(2))
