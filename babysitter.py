@@ -18,12 +18,16 @@ class Babysitter:
             return True
 
     def job_ends_at(self, end_time):
+        if self._is_valid_end_time(end_time):
+            self.end_time = end_time
+
+    def _is_valid_end_time(self, end_time):
         if self._is_invalid_time(end_time):
             raise EndsTooLate()
         elif self._is_end_time_before_start_time(end_time):
             raise EndTimeBeforeStartTime()
         else:
-            self.end_time = end_time
+            return True
 
     def bedtime_is(self, bedtime):
             self.bedtime = bedtime
