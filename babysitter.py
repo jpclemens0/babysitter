@@ -55,7 +55,7 @@ class Babysitter:
             return False
 
     def _is_invalid_time(self, time):
-        return time.time < self.earliest_start_allowed.time or time.time > self.latest_end_allowed.time
+        return time < self.earliest_start_allowed or time > self.latest_end_allowed
 
 class StartsTooEarly(Exception):
     pass
