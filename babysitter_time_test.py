@@ -23,3 +23,6 @@ class TestBabysitterTime(unittest.TestCase):
         self.assertTrue(BabysitterTime(18) > BabysitterTime(17))
         self.assertTrue(BabysitterTime(16) > BabysitterTime(17))
         self.assertTrue(BabysitterTime(0) > BabysitterTime(23))
+
+    def test_eq(self):
+        self.assertTrue(BabysitterTime(2) == BabysitterTime(2))
