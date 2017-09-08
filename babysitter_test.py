@@ -186,7 +186,7 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_starts_at(19)
         self.babysitter.bedtime_is(17)
         self.babysitter.job_ends_at(1)
-        self.assertEqual(self.babysitter._get_full_hours_at_12_hourly_rate(), 5)
+        self.assertEqual(self.babysitter._get_full_hours_at_12_hourly_rate(), 0)
 
         self.babysitter.job_starts_at(17)
         self.babysitter.bedtime_is(13)
@@ -201,6 +201,12 @@ class TestBabysitter(unittest.TestCase):
     def test__get_full_hours_at_12_hourly_rate_with_endtime_before_midnight(self):
         self.babysitter.job_starts_at(17)
         self.babysitter.job_ends_at(19)
+        self.assertEqual(self.babysitter._get_full_hours_at_12_hourly_rate(), 2)
+
+        self.babysitter.bedtime_is(18)
+        self.assertEqual(self.babysitter._get_full_hours_at_12_hourly_rate(), 1)
+
+        self.babysitter.bedtime_is(20)
         self.assertEqual(self.babysitter._get_full_hours_at_12_hourly_rate(), 2)
 
 
