@@ -214,6 +214,18 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_ends_at(1)
         self.assertEqual(self.babysitter._get_full_hours_at_8_hourly_rate(), 0)
 
+    def test__get_full_hours_at_8_hourly_rate_when_bedtime_after_end_time(self):
+        self.babysitter.job_starts_at(17)
+        self.babysitter.job_ends_at(20)
+        self.babysitter.bedtime_is(22)
+        self.assertEqual(self.babysitter._get_full_hours_at_8_hourly_rate(), 0)
+
+        self.babysitter.bedtime_is(2)
+        self.assertEqual(self.babysitter._get_full_hours_at_8_hourly_rate(), 0)
+
+        self.babysitter.job_ends_at(1)
+        self.assertEqual(self.babysitter._get_full_hours_at_8_hourly_rate(), 0)
+
 
 if __name__ == '__main__':
     unittest.main()
