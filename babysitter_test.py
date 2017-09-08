@@ -255,11 +255,54 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_ends_at(2)
         self.assertEqual(self.babysitter._get_full_hours_at_16_hourly_rate(), 2)
 
-    def test__calculate_pay(self):
-        self.babysitter.job_starts_at(17)
+    def test__calculate_pay_with_bedtime(self):
+        self.babysitter.bedtime_is(17)
+        self.babysitter.job_starts_at(18)
+        self.babysitter.job_ends_at(22)
+        self.assertEqual(self.babysitter.calculate_pay(), 32)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.bedtime_is(20)
+        self.babysitter.job_ends_at(22)
+        self.assertEqual(self.babysitter.calculate_pay(), 40)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.job_ends_at(19)
+        self.babysitter.bedtime_is(20)
+        self.assertEqual(self.babysitter.calculate_pay(), 12)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.job_ends_at(19)
+        self.babysitter.bedtime_is(2)
+        self.assertEqual(self.babysitter.calculate_pay(), 12)
+
+        self.babysitter.bedtime_is(17)
+        self.babysitter.job_starts_at(18)
+        self.babysitter.job_ends_at(2)
+        self.assertEqual(self.babysitter.calculate_pay(), 80)
+
+        self.babysitter.job_starts_at(18)
         self.babysitter.bedtime_is(20)
         self.babysitter.job_ends_at(2)
-        self.assertEqual(self.babysitter.calculate_pay(), 100)
+        self.assertEqual(self.babysitter.calculate_pay(), 88)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.bedtime_is(1)
+        self.babysitter.job_ends_at(2)
+        self.assertEqual(self.babysitter.calculate_pay(), 104)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.job_ends_at(2)
+        self.babysitter.bedtime_is(3)
+        self.assertEqual(self.babysitter.calculate_pay(), 104)
+
+    def test__calculate_pay_without_bedtime(self):
+        self.babysitter.job_starts_at(17)
+        self.babysitter.job_ends_at(22)
+        self.assertEqual(self.babysitter.calculate_pay(), 60)
+
+        self.babysitter.job_ends_at(2)
+        self.assertEqual(self.babysitter.calculate_pay(), 116)
 
 
 if __name__ == '__main__':
