@@ -30,3 +30,6 @@ class BabysitterTime:
 
     def __sub__(self, other):
         return self.time - other.time
+
+    def full_hours_since(self, other):
+        return (self.time - other.time).total_seconds()//3600

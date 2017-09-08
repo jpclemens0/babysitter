@@ -46,3 +46,6 @@ class TestBabysitterTime(unittest.TestCase):
         self.assertEqual(BabysitterTime(2) - BabysitterTime(18, 30), datetime.timedelta(hours=7, minutes=30))
         self.assertEqual(BabysitterTime(18, 30) - BabysitterTime(2), datetime.timedelta(hours=-8, minutes=30))
         self.assertEqual(BabysitterTime(20, 45) - BabysitterTime(18, 15), datetime.timedelta(hours=2, minutes=30))
+
+    def test_full_hours_since(self):
+        self.assertEqual(BabysitterTime(20).full_hours_since(BabysitterTime(17)), 3)
