@@ -31,6 +31,8 @@ class Babysitter:
     def _get_full_hours_at_16_hourly_rate(self):
         if self.end_time < self.midnight:
             return 0
+        else:
+            return self.end_time.full_hours_since(self.midnight)
 
     def job_starts_at(self, hour, minute=None):
         if self._is_valid_start_time(hour, minute):
