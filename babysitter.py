@@ -17,6 +17,13 @@ class Babysitter:
             time = min(self.end_time, self.midnight)
             return time.full_hours_since(self.start_time)
 
+    def _get_full_hours_at_8_hourly_rate(self):
+        try:
+            if self.bedtime:
+                return 0
+        except AttributeError:
+            return 0
+
     def job_starts_at(self, hour, minute=None):
         if self._is_valid_start_time(hour, minute):
             self.start_time = BabysitterTime(hour, minute)
