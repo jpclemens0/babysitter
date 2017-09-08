@@ -19,8 +19,12 @@ class Babysitter:
 
     def _get_full_hours_at_8_hourly_rate(self):
         try:
-            if self.bedtime > self.end_time:
+            if self.bedtime > self.end_time or self.bedtime > self.midnight:
                 return 0
+            else:
+                begin = max(self.start_time, self.bedtime)
+                end = min(self.midnight, self.end_time)
+                return end.full_hours_since(begin)
         except AttributeError:
             return 0
 
