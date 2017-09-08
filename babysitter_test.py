@@ -305,5 +305,47 @@ class TestBabysitter(unittest.TestCase):
         self.assertEqual(self.babysitter.calculate_pay(), 116)
 
 
+    def test__calculate_pay_with_bedtime_with_fractional_hours(self):
+        self.babysitter.bedtime_is(17)
+        self.babysitter.job_starts_at(18, 10)
+        self.babysitter.job_ends_at(22, 20)
+        self.assertEqual(self.babysitter.calculate_pay(), 32)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.bedtime_is(20, 10)
+        self.babysitter.job_ends_at(22, 20)
+        self.assertEqual(self.babysitter.calculate_pay(), 40)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.job_ends_at(19, 10)
+        self.babysitter.bedtime_is(20, 20)
+        self.assertEqual(self.babysitter.calculate_pay(), 12)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.job_ends_at(19, 10)
+        self.babysitter.bedtime_is(2, 20)
+        self.assertEqual(self.babysitter.calculate_pay(), 12)
+
+        self.babysitter.bedtime_is(17)
+        self.babysitter.job_starts_at(18, 10)
+        self.babysitter.job_ends_at(2, 20)
+        self.assertEqual(self.babysitter.calculate_pay(), 72)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.bedtime_is(20, 10)
+        self.babysitter.job_ends_at(2, 20)
+        self.assertEqual(self.babysitter.calculate_pay(), 80)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.bedtime_is(1, 10)
+        self.babysitter.job_ends_at(2, 20)
+        self.assertEqual(self.babysitter.calculate_pay(), 104)
+
+        self.babysitter.job_starts_at(18)
+        self.babysitter.job_ends_at(2, 10)
+        self.babysitter.bedtime_is(3, 20)
+        self.assertEqual(self.babysitter.calculate_pay(), 104)
+
+
 if __name__ == '__main__':
     unittest.main()
