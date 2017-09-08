@@ -7,9 +7,12 @@ class Babysitter:
     midnight = BabysitterTime(0)
 
     def _get_full_hours_at_12_hourly_rate(self):
-        if self.start_time < self.bedtime < self.midnight:
-            return (self.bedtime - self.start_time).total_seconds()//3600
-        else:
+        try:
+            if self.start_time < self.bedtime < self.midnight:
+                return (self.bedtime - self.start_time).total_seconds()//3600
+            else:
+                return (self.midnight - self.start_time).total_seconds()//3600
+        except AttributeError:
             return (self.midnight - self.start_time).total_seconds()//3600
 
     def job_starts_at(self, hour, minute=None):
