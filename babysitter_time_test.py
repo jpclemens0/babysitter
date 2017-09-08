@@ -49,3 +49,7 @@ class TestBabysitterTime(unittest.TestCase):
 
     def test_full_hours_since(self):
         self.assertEqual(BabysitterTime(20).full_hours_since(BabysitterTime(17)), 3)
+        self.assertEqual(BabysitterTime(20).full_hours_since(BabysitterTime(17, 30)), 2)
+        self.assertEqual(BabysitterTime(20, 30).full_hours_since(BabysitterTime(17)), 3)
+        self.assertEqual(BabysitterTime(20, 30).full_hours_since(BabysitterTime(17, 30)), 3)
+        self.assertEqual(BabysitterTime(2).full_hours_since(BabysitterTime(17)), 9)
