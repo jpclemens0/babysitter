@@ -5,8 +5,8 @@ class Babysitter:
     earliest_start_allowed = BabysitterTime(BabysitterTime.earliest_start_allowed)
     latest_end_allowed = BabysitterTime(BabysitterTime.latest_end_allowed)
 
-    def get_full_hours_between_start_time_and_bedtime_or_midnight(self):
-        return (self.bedtime - self.start_time).hour
+    def _get_full_hours_between_start_time_and_bedtime_or_midnight(self):
+        return (self.bedtime - self.start_time).total_seconds()//3600
 
     def job_starts_at(self, hour, minute=None):
         if self._is_valid_start_time(hour, minute):
