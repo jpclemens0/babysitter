@@ -198,6 +198,11 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_ends_at(1)
         self.assertEqual(self.babysitter._get_full_hours_at_12_hourly_rate(), 7)
 
+    def test__get_full_hours_at_12_hourly_rate_with_endtime_before_midnight(self):
+        self.babysitter.job_starts_at(17)
+        self.babysitter.job_ends_at(19)
+        self.assertEqual(self.babysitter._get_full_hours_at_12_hourly_rate(), 2)
+
 
 if __name__ == '__main__':
     unittest.main()

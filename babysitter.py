@@ -13,7 +13,10 @@ class Babysitter:
             else:
                 return self.midnight.full_hours_since(self.start_time)
         except AttributeError:
-            return self.midnight.full_hours_since(self.start_time)
+            if self.midnight < self.end_time:
+                return self.midnight.full_hours_since(self.start_time)
+            else:
+                return self.end_time.full_hours_since(self.start_time)
 
     def job_starts_at(self, hour, minute=None):
         if self._is_valid_start_time(hour, minute):
