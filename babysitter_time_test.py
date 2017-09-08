@@ -40,3 +40,9 @@ class TestBabysitterTime(unittest.TestCase):
 
     def test_minus(self):
         self.assertEqual(BabysitterTime(20) - BabysitterTime(18), datetime.timedelta(hours=2))
+        self.assertEqual(BabysitterTime(2) - BabysitterTime(18), datetime.timedelta(hours=8))
+        self.assertEqual(BabysitterTime(18) - BabysitterTime(2), datetime.timedelta(hours=-8))
+        self.assertEqual(BabysitterTime(20, 30) - BabysitterTime(18), datetime.timedelta(hours=2, minutes=30))
+        self.assertEqual(BabysitterTime(2) - BabysitterTime(18, 30), datetime.timedelta(hours=7, minutes=30))
+        self.assertEqual(BabysitterTime(18, 30) - BabysitterTime(2), datetime.timedelta(hours=-8, minutes=30))
+        self.assertEqual(BabysitterTime(20, 45) - BabysitterTime(18, 15), datetime.timedelta(hours=2, minutes=30))
