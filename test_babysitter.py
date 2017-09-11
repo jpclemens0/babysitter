@@ -155,6 +155,7 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_ends_at(18, 30)
         self.assertRaises(StartTimeAfterEndTime, self.babysitter._is_valid_start_time, 18, 31)
         self.assertTrue(self.babysitter._is_valid_start_time(18, 29))
+        self.assertTrue(self.babysitter._is_valid_start_time(18))
 
     def test__is_valid_end_time(self):
         self.assertRaises(EndsTooLate, self.babysitter._is_valid_end_time, 5)
