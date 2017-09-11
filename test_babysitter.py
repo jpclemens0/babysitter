@@ -27,7 +27,7 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_starts_at(4)
         self.assertEqual(self.babysitter.start_time, BabysitterTime(4))
 
-    def test_babysitter_start_time_must_be_before_end_time(self):
+    def test_babysitter_start_time_must_not_be_later_than_end_time(self):
         self.babysitter.job_ends_at(18)
         self.assertRaises(StartTimeAfterEndTime, self.babysitter.job_starts_at, hour=19)
         self.assertRaises(StartTimeAfterEndTime, self.babysitter.job_starts_at, hour=19, minute=30)
@@ -76,6 +76,7 @@ class TestBabysitter(unittest.TestCase):
         self.assertTrue(self.babysitter._is_invalid_time(4, 1))
         self.assertFalse(self.babysitter._is_invalid_time(17, 30))
         self.assertFalse(self.babysitter._is_invalid_time(0, 30))
+        self.assertFalse(self.babysitter._is_invalid_time(4))
 
     def test__is_start_time_after_end_time(self):
         self.babysitter.job_ends_at(20)
