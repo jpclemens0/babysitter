@@ -18,11 +18,13 @@ class TestBabysitter(unittest.TestCase):
         self.babysitter.job_starts_at(17, 30)
         self.assertEqual(self.babysitter.start_time, BabysitterTime(17, 30))
 
-    def test_babysitter_sets_start_time_when_it_is_after_midnight_and_before_4AM(self):
+    def test_babysitter_sets_start_time_when_it_is_after_midnight_and_not_later_than_4AM(self):
         self.babysitter.job_starts_at(1)
         self.assertEqual(self.babysitter.start_time, BabysitterTime(1))
         self.babysitter.job_starts_at(1, 30)
         self.assertEqual(self.babysitter.start_time, BabysitterTime(1, 30))
+        self.babysitter.job_starts_at(4)
+        self.assertEqual(self.babysitter.start_time, BabysitterTime(4))
 
     def test_babysitter_start_time_must_be_before_end_time(self):
         self.babysitter.job_ends_at(18)
