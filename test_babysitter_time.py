@@ -26,6 +26,17 @@ class TestBabysitterTime(unittest.TestCase):
         self.assertTrue(BabysitterTime(23) < BabysitterTime(23, 30))
         self.assertTrue(BabysitterTime(23, 30) < BabysitterTime(0))
 
+    def test_le(self):
+        self.assertTrue(BabysitterTime(1) <= BabysitterTime(2))
+        self.assertTrue(BabysitterTime(17) <= BabysitterTime(18))
+        self.assertTrue(BabysitterTime(17) <= BabysitterTime(16))
+        self.assertTrue(BabysitterTime(23) <= BabysitterTime(0))
+        self.assertTrue(BabysitterTime(23) <= BabysitterTime(23, 30))
+        self.assertTrue(BabysitterTime(23, 30) <= BabysitterTime(0))
+        self.assertTrue(BabysitterTime(1) <= BabysitterTime(1))
+        self.assertTrue(BabysitterTime(17) <= BabysitterTime(17))
+        self.assertTrue(BabysitterTime(23, 30) <= BabysitterTime(23, 30))
+
     def test_gt(self):
         self.assertTrue(BabysitterTime(2) > BabysitterTime(1))
         self.assertTrue(BabysitterTime(18) > BabysitterTime(17))
@@ -34,9 +45,26 @@ class TestBabysitterTime(unittest.TestCase):
         self.assertTrue(BabysitterTime(2, 30) > BabysitterTime(2))
         self.assertTrue(BabysitterTime(3) > BabysitterTime(2, 30))
 
+    def test_ge(self):
+        self.assertTrue(BabysitterTime(2) >= BabysitterTime(1))
+        self.assertTrue(BabysitterTime(18) >= BabysitterTime(17))
+        self.assertTrue(BabysitterTime(16) >= BabysitterTime(17))
+        self.assertTrue(BabysitterTime(0) >= BabysitterTime(23))
+        self.assertTrue(BabysitterTime(2, 30) >= BabysitterTime(2))
+        self.assertTrue(BabysitterTime(3) >= BabysitterTime(2, 30))
+        self.assertTrue(BabysitterTime(2) >= BabysitterTime(2))
+        self.assertTrue(BabysitterTime(18) >= BabysitterTime(18))
+        self.assertTrue(BabysitterTime(2, 30) >= BabysitterTime(2, 30))
+
     def test_eq(self):
         self.assertTrue(BabysitterTime(2) == BabysitterTime(2))
         self.assertTrue(BabysitterTime(2, 30) == BabysitterTime(2, 30))
+
+    def test_ne(self):
+        self.assertFalse(BabysitterTime(2) != BabysitterTime(2))
+        self.assertFalse(BabysitterTime(2, 30) != BabysitterTime(2, 30))
+        self.assertTrue(BabysitterTime(2) != BabysitterTime(3))
+        self.assertTrue(BabysitterTime(2, 30) != BabysitterTime(2, 31))
 
     def test_minus(self):
         self.assertEqual(BabysitterTime(20) - BabysitterTime(18), datetime.timedelta(hours=2))
