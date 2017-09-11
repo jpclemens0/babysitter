@@ -86,6 +86,7 @@ class TestBabysitter(unittest.TestCase):
         self.assertTrue(self.babysitter._is_start_time_after_end_time(20, 1))
         self.assertTrue(self.babysitter._is_start_time_after_end_time(1, 30))
         self.assertFalse(self.babysitter._is_start_time_after_end_time(18, 30))
+        self.assertFalse(self.babysitter._is_start_time_after_end_time(20))
 
         self.babysitter.job_ends_at(20, 30)
         self.assertTrue(self.babysitter._is_start_time_after_end_time(21))
