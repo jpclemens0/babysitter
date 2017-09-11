@@ -1,0 +1,5 @@
+This project implements a solution to the Babysitter Kata along with unit tests. The history of the implementation can be followed by examining the GitHub commits.
+
+All unit tests can be run with ‘python -m unittest discover’ executed from the root project directory.
+
+The main program sets the parameters defining a single babysitting job and calculates the pay for that job. It can be run with ‘python main.py’ executed from the root project directory.
