@@ -6,17 +6,16 @@ class TestBabysitterTime(unittest.TestCase):
 
     def test_set_time_between_5PM_and_midnight(self):
         self.time = BabysitterTime(17)
-        self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date.today(), datetime.time(17)))
+        self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date(1970, 1, 1), datetime.time(17)))
 
     def test_set_time_with_hour_and_minute(self):
         self.time = BabysitterTime(17, 30)
-        self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date.today(), datetime.time(17, 30)))
+        self.assertEqual(self.time.time, datetime.datetime.combine(datetime.date(1970, 1, 1), datetime.time(17, 30)))
 
     def test_set_time_between_midnight_and_5PM(self):
         self.time = BabysitterTime(1)
         self.assertEqual(self.time.time,
-                         datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=1),
-                                                   datetime.time(1)))
+                         datetime.datetime.combine(datetime.date(1970, 1, 2), datetime.time(1)))
 
     def test_lt(self):
         self.assertTrue(BabysitterTime(1) < BabysitterTime(2))
