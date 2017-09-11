@@ -120,6 +120,7 @@ class TestBabysitter(unittest.TestCase):
         self.assertFalse(self.babysitter._is_end_time_before_start_time(20, 1))
         self.assertFalse(self.babysitter._is_end_time_before_start_time(1, 30))
         self.assertTrue(self.babysitter._is_end_time_before_start_time(19, 59))
+        self.assertFalse(self.babysitter._is_end_time_before_start_time(20))
 
         self.babysitter.job_starts_at(20, 30)
         self.assertFalse(self.babysitter._is_end_time_before_start_time(21))
