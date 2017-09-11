@@ -3,3 +3,5 @@ This project implements a solution to the Babysitter Kata along with unit tests.
 All unit tests can be run with ‘python -m unittest discover’ executed from the root project directory.
 
 The main program sets the parameters defining a single babysitting job and calculates the pay for that job. It can be run with ‘python main.py’ executed from the root project directory.
+
+Note that the rule about pay for full hours only is ambiguous.  I have interpreted this to mean that only full hours are considered at each level of pay throughout the night.  So if the babysitter works 2 hours and 59 minutes before bedtime they are only paid for for 2 hours.  Then the extra 59 minutes are discarded and the pay between bedtime and midnight is calculated based on full hours between bedtime and midnight.  And so forth.

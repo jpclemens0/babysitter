@@ -6,6 +6,8 @@ class Babysitter:
     latest_end_allowed = BabysitterTime(BabysitterTime.latest_end_allowed)
     midnight = BabysitterTime(0)
 
+    # I have interpreted the rule about full hours to mean that only full hours are
+    # considered at each level of pay throughout the night.
     def calculate_pay(self):
         pay_at_12_hourly_rate = 12*self._get_full_hours_at_12_hourly_rate()
         pay_at_8_hourly_rate = 8*self._get_full_hours_at_8_hourly_rate()
