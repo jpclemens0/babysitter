@@ -10,7 +10,7 @@ class Babysitter:
         pay_at_12_hourly_rate = 12*self._get_full_hours_at_12_hourly_rate()
         pay_at_8_hourly_rate = 8*self._get_full_hours_at_8_hourly_rate()
         pay_at_16_hourly_rate = 16*self._get_full_hours_at_16_hourly_rate()
-        return pay_at_12_hourly_rate + pay_at_8_hourly_rate + pay_at_16_hourly_rate
+        return int(pay_at_12_hourly_rate + pay_at_8_hourly_rate + pay_at_16_hourly_rate)
 
     def _get_full_hours_at_12_hourly_rate(self):
         try:
